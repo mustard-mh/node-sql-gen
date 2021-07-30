@@ -1,5 +1,5 @@
 {
-    "name": "sql-gen",
+    "name": "node-sql-gen",
     "version": "0.0.1",
     "description": "simple sql query generator",
     "main": "dist/cjs/index.js",

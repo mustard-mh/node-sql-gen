@@ -1,4 +1,4 @@
-# sql-gen
+# node-sql-gen
 
 Simple sql query generator. No orm, `raw sql forever`!! 🎉
 
@@ -6,10 +6,10 @@ Simple sql query generator. No orm, `raw sql forever`!! 🎉
 
 ```shell
 # yarn
-$ yarn add sql-gen
+$ yarn add node-sql-gen
 
 # npm
-$ npm install sql-gen
+$ npm install node-sql-gen
 ```
 
 ## Documents
@@ -62,7 +62,7 @@ ErrorUnknownOperator = "unknown operator, only " + JSON.stringify(AvailableOpera
 #### Exec with mysql2
 
 ```js
-const sqlGen = require('sql-gen')
+const sqlGen = require('node-sql-gen')
 const mysql = require('mysql2')
 
 const dbClient = mysql.createPool({ ... })
