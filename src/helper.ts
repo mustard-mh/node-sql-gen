@@ -1,10 +1,10 @@
 import * as _ from "lodash"
 import { Data, Operator, Where, OkSql, OR, AvailableOperator } from "./types"
 
-export const ErrorWhereNull = new Error("where cannot be null or empty")
-export const ErrorSetNull = new Error("set data cannot be null or empty")
-export const ErrorWhereInEmptyArray = new Error("where condition [in] value must be array (len>0)")
-export const ErrorUnknownOperator = new Error("unknown operator, only " + JSON.stringify(AvailableOperator) + " is available")
+export const ErrorWhereNull = "where cannot be null or empty"
+export const ErrorSetNull = "set data cannot be null or empty"
+export const ErrorWhereInEmptyArray = "where condition [in] value must be array (len>0)"
+export const ErrorUnknownOperator = "unknown operator, only " + JSON.stringify(AvailableOperator) + " is available"
 
 const getFiled = (field: string): string => "`" + field + "`"
 export const getFields = (fields?: string): string => (fields != null && fields !== "*") ? fields.split(",").map(e => getFiled(e)).join(", ") : "*"
@@ -16,7 +16,7 @@ const withOperator = (field: string, operator: Operator): OkSql => {
 	let orArgs = []
 	for (const opr in operator) {
 		if (!AvailableOperator.includes(opr)) {
-			throw ErrorUnknownOperator
+			throw new Error(ErrorUnknownOperator)
 		}
 		if (opr === OR) {
 			const tmpOpr = withOperator(field, operator[opr] as Where)
@@ -30,7 +30,7 @@ const withOperator = (field: string, operator: Operator): OkSql => {
 		let oprValue = operator[opr]
 		if (opr === "IN") {
 			if (!Array.isArray(oprValue) || oprValue.length === 0) {
-				throw ErrorWhereInEmptyArray
+				throw new Error(ErrorWhereInEmptyArray)
 			}
 			oprValue = [oprValue]
 		}

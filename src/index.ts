@@ -33,7 +33,7 @@ export function insert (table: string, data: Data): Sql {
 	const sql = "INSERT INTO ?? SET ?"
 	const genSetData = genData(data)
 	if (Object.keys(genSetData).length === 0) {
-		throw ErrorSetNull
+		throw new Error(ErrorSetNull)
 	}
 	const args = [table, genSetData]
 	return { sql, args }
@@ -43,7 +43,7 @@ export function update (table: string, where: Where, setData: Data): Sql {
 	let sql = "UPDATE ?? SET ? WHERE"
 	const genSetData = genData(setData)
 	if (Object.keys(genSetData).length === 0) {
-		throw ErrorSetNull
+		throw new Error(ErrorSetNull)
 	}
 	let args: unknown[] = [table, genSetData]
 	// append where statement
@@ -52,7 +52,7 @@ export function update (table: string, where: Where, setData: Data): Sql {
 		sql += ` ${ whereSql.sql }`
 		args = args.concat(whereSql.args)
 	} else {
-		throw ErrorWhereNull
+		throw new Error(ErrorWhereNull)
 	}
 	return { sql, args }
 }
@@ -66,7 +66,7 @@ export function del (table: string, where: Where): Sql {
 		sql += ` ${ whereSql.sql }`
 		args = args.concat(whereSql.args)
 	} else {
-		throw ErrorWhereNull
+		throw new Error(ErrorWhereNull)
 	}
 	return { sql, args }
 }
