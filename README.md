@@ -47,12 +47,14 @@ const setDataExample01 = {
 }
 ```
 
-### Errors
+### Error Messages
 ```js
-ErrorWhereNull = new Error("where cannot be null or empty")
-ErrorSetNull = new Error("set data cannot be null or empty")
-ErrorWhereInEmptyArray = new Error("where condition [in] value must be array (len>0)")
-ErrorUnknownOperator = new Error("unknown operator, only [= > < >= <= LIKE IN] is available")
+AvailableOperator = ["LIKE", "IN", ">", "<", ">=", "<=", "=", OR]
+
+ErrorWhereNull = "where cannot be null or empty"
+ErrorSetNull = "set data cannot be null or empty"
+ErrorWhereInEmptyArray = "where condition [in] value must be array (len>0)"
+ErrorUnknownOperator = "unknown operator, only " + JSON.stringify(AvailableOperator) + " is available"
 ```
 
 ## Usage
