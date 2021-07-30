@@ -1,0 +1,34 @@
+{
+    "name": "sql-gen",
+    "version": "0.0.1",
+    "description": "simple sql query generator",
+    "main": "dist/cjs/index.js",
+    "scripts": {
+        "build": "rm -rf dist; tsc",
+        "prepare": "yarn build",
+        "test": "jest",
+        "test-coverage": "yarn jest --coverage"
+    },
+    "keywords": [
+        "sql",
+        "query",
+        "generator"
+    ],
+    "homepage": "https://github.com/mustard-mh/node-sql-gen",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/mustard-mh/node-sql-gen.git"
+    },
+    "author": "mustard-mh",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/jest": "^26.0.24",
+        "@typescript-eslint/eslint-plugin": "^4.28.5",
+        "@typescript-eslint/parser": "^4.28.5",
+        "eslint": "^7.31.0",
+        "jest": "^27.0.6",
+        "mysql2": "^2.2.5",
+        "ts-jest": "^27.0.4",
+        "typescript": "^4.3.5"
+    }
+}
