@@ -74,8 +74,6 @@ async function query (gen) {
 query(sqlGen.select("user")).then(console.log).catch(console.error)
 ```
 
-#### Select
-
 ```js
 const OR = sqlGen.OR
 
@@ -83,7 +81,11 @@ function log (obj) {
   console.dir(obj, { depth: null })
   console.log('mysql:', mysql.format(obj.sql, obj.args))
 }
+```
 
+#### Select
+
+```js
 let s0 = sqlGen.select("user")
 log(s0)
 // { sql: 'SELECT * FROM ??', args: [ 'user' ] }
