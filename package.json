@@ -1,8 +1,9 @@
 {
     "name": "node-sql-gen",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "simple sql query generator",
     "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
     "scripts": {
         "build": "rm -rf dist; tsc",
         "prepare": "yarn build",

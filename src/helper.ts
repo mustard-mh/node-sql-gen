@@ -1,4 +1,3 @@
-import * as _ from "lodash"
 import { Data, Operator, Where, OkSql, OR, AvailableOperator } from "./types"
 
 export const ErrorWhereNull = "where cannot be null or empty"
@@ -50,7 +49,6 @@ export const genWhere = (where?: Where): OkSql => {
 	if (where == null) {
 		return { sql: "", args: [], ok: false }
 	}
-	where = _.cloneDeep(where)
 	const sqlArr = []
 	let args = []
 	const orSqlArr = []
@@ -93,7 +91,7 @@ export const genWhere = (where?: Where): OkSql => {
 }
 
 export const genData = (data: Data): Data => {
-	const newData = _.cloneDeep(data)
+	const newData = JSON.parse(JSON.stringify(data)) as Data
 	for (const key in newData) {
 		const value = newData[key]
 		if (value != null && typeof value === "object") {
