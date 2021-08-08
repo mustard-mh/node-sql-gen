@@ -104,6 +104,21 @@ describe("Select", function () {
 	})
 })
 
+describe("Count", function () {
+	test("without where", function () {
+		const s = SqlGen.count("user")
+		const sql = mysql.format(s.sql, s.args)
+		const expectedSql = "SELECT COUNT(1) AS `total` FROM `user`"
+		expect(sql).toBe(expectedSql)
+	})
+	test("with where", function () {
+		const s = SqlGen.count("user", { id: { IN: [1, 2, 3] } })
+		const sql = mysql.format(s.sql, s.args)
+		const expectedSql = "SELECT COUNT(1) AS `total` FROM `user` WHERE `id` IN (1, 2, 3)"
+		expect(sql).toBe(expectedSql)
+	})
+})
+
 function toSqlParam (obj: unknown | unknown[]): string {
 	return JSON.stringify(JSON.stringify(obj)).replace(/((^")|("$))/g, "")
 }

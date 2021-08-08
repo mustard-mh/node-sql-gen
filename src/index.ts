@@ -29,6 +29,17 @@ export function select (table: string, fields?: string, where?: Where, orderBy?:
 	return { sql, args }
 }
 
+export function count (table: string, where?: Where): Sql {
+	let sql = "SELECT COUNT(1) AS `total` FROM ??"
+	let args: unknown[] = [table]
+	const whereSql = genWhere(where)
+	if (whereSql.ok !== false) {
+		sql += ` WHERE ${ whereSql.sql }`
+		args = args.concat(whereSql.args)
+	}
+	return { sql, args }
+}
+
 export function insert (table: string, data: Data): Sql {
 	const sql = "INSERT INTO ?? SET ?"
 	const genSetData = genData(data)
@@ -73,6 +84,7 @@ export function del (table: string, where: Where): Sql {
 
 export default {
 	select, insert, update, del,
+	count,
 	// Keyword
 	OR,
 }
